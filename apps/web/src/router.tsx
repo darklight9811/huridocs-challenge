@@ -3,6 +3,8 @@ import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
+import { client } from "@repo/domains";
+import { queryClient } from "@repo/domains/app/query";
 
 function getContext() {
 	const serverHelpers = createTRPCOptionsProxy({

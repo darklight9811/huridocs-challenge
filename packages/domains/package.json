@@ -7,6 +7,7 @@
 		"vite": "catalog:general"
 	},
 	"exports": {
+		"./*": "./src/domains/*.ts",
 		".": "./src/domains/index.ts",
 		"./server": "./src/server.ts",
 		"./utils/*": "./src/utils/*.ts"
@@ -35,6 +36,7 @@
 		"typescript": "catalog:general"
 	},
 	"dependencies": {
+		"@repo/ds": "workspace:*",
 		"@t3-oss/env-core": "^0.13.10",
 		"@tanstack/react-query": "catalog:general",
 		"@tanstack/react-router": "catalog:general",

@@ -5,7 +5,8 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import type { TRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 
-import appCss from "../styles.css?url";
+import appCss from "@repo/ds/style?url";
+
 import type { AppRouter } from "@repo/domains/server";
 
 interface MyRouterContext {
@@ -47,7 +48,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
 				<HeadContent />
 			</head>
-			<body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+			<body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
 					
 					{children}
 					

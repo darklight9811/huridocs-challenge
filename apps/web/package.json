@@ -12,6 +12,7 @@
 		"test": "bun --bun vitest run"
 	},
 	"dependencies": {
+		"@repo/ds": "workspace:*",
 		"@repo/domains": "workspace:*",
 		"@tailwindcss/vite": "^4.1.18",
 		"@tanstack/match-sorter-utils": "latest",
