@@ -1,0 +1,71 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"style": {
+				"noNonNullAssertion": "off"
+			},
+			"complexity": {
+				"noBannedTypes": "off"
+			},
+			"correctness": {
+				"noChildrenProp": "off"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "off"
+			}
+		}
+	},
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
+	},
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": {
+					"level": "on",
+					"options": {
+						"groups": [
+							":NODE:",
+							":BLANK_LINE:",
+							[":PACKAGE:", "!@repo/**"],
+							[":PACKAGE_WITH_PROTOCOL:", "!@repo/**"],
+							":URL:",
+							":BLANK_LINE:",
+							"@repo/ds/**",
+							":BLANK_LINE:",
+							"@repo/*",
+							":BLANK_LINE:",
+							":ALIAS:",
+							":PATH:"
+						]
+					}
+				}
+			}
+		}
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 4,
+		"lineWidth": 120,
+		"lineEnding": "lf"
+	},
+	"javascript": {
+		"globals": ["React", "JSX"]
+	},
+	"files": {
+		"includes": [
+			"packages/*/**",
+			"apps/*/**",
+			"package.json",
+			"tsconfig.json",
+			"!packages/locales/src/**/*",
+			"./vitest"
+		]
+	}
+}
