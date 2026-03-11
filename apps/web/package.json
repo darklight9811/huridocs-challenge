@@ -1,0 +1,45 @@
+{
+	"name": "web",
+	"private": true,
+	"type": "module",
+	"imports": {
+		"#/*": "./src/*"
+	},
+	"scripts": {
+		"dev": "bun --bun vite dev --port 3000",
+		"build": "bun --bun vite build",
+		"preview": "bun --bun vite preview",
+		"test": "bun --bun vitest run"
+	},
+	"dependencies": {
+		"@tailwindcss/vite": "^4.1.18",
+		"@tanstack/match-sorter-utils": "latest",
+		"@tanstack/query-db-collection": "latest",
+		"@tanstack/react-db": "latest",
+		"@tanstack/react-devtools": "latest",
+		"@tanstack/react-form": "latest",
+		"@tanstack/react-query": "latest",
+		"@tanstack/react-query-devtools": "latest",
+		"@tanstack/react-router": "latest",
+		"@tanstack/react-router-devtools": "latest",
+		"@tanstack/react-router-ssr-query": "latest",
+		"@tanstack/react-start": "latest",
+		"@tanstack/react-table": "latest",
+		"@tanstack/router-plugin": "^1.132.0",
+		"@trpc/server": "catalog:general",
+		"lucide-react": "catalog:react",
+		"react": "catalog:react",
+		"react-dom": "catalog:react",
+		"tailwindcss": "^4.1.18",
+		"zod": "catalog:general"
+	},
+	"devDependencies": {
+		"nitro": "^3.0.1-20260202-124820-1954b824",
+		"@tanstack/devtools-vite": "latest",
+		"@types/react": "catalog:react",
+		"@types/react-dom": "catalog:react",
+		"@vitejs/plugin-react": "^5.1.4",
+		"typescript": "catalog:general",
+		"vite": "catalog:general"
+	}
+}
