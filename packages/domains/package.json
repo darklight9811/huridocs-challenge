@@ -1,0 +1,52 @@
+{
+	"name": "@repo/domains",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"overrides": {
+		"vite": "catalog:general"
+	},
+	"exports": {
+		".": "./src/domains/index.ts",
+		"./server": "./src/server.ts",
+		"./utils/*": "./src/utils/*.ts"
+	},
+	"license": "MIT",
+	"scripts": {
+		"verify": "biome check --error-on-warnings ./src",
+		"typecheck": "tsgo --noEmit",
+		"db": "bun --bun --env-file=../../.env.development.local drizzle-kit",
+		"test": "vitest",
+		"storybook": "storybook dev -p 6006",
+		"storybook:build": "storybook build",
+		"storybook:static": "bunx serve ./storybook-static -l 6006"
+	},
+	"devDependencies": {
+		"@faker-js/faker": "^10.3.0",
+		"@storybook/addon-a11y": "^10.2.16",
+		"@storybook/addon-vitest": "^10.2.16",
+		"@storybook/react-vite": "^10.2.16",
+		"@tailwindcss/vite": "^4.2.1",
+		"@types/react": "catalog:react",
+		"@types/react-dom": "catalog:react",
+		"@vitest/browser-playwright": "^4.0.18",
+		"@vitest/coverage-v8": "4.0.18",
+		"storybook": "^10.2.16",
+		"typescript": "catalog:general"
+	},
+	"dependencies": {
+		"@t3-oss/env-core": "^0.13.10",
+		"@tanstack/react-query": "catalog:general",
+		"@tanstack/react-router": "catalog:general",
+		"@tanstack/react-start": "catalog:general",
+		"@trpc/client": "^11.12.0",
+		"@trpc/server": "catalog:general",
+		"@trpc/tanstack-react-query": "^11.12.0",
+		"devalue": "^5.6.3",
+		"lucide-react": "catalog:react",
+		"motion": "catalog:react",
+		"react": "catalog:react",
+		"react-dom": "catalog:react",
+		"zod": "catalog:general"
+	}
+}

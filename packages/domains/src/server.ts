@@ -1,0 +1,13 @@
+import { t } from "./utils/trpc";
+
+export { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+
+export { createTRPCContext } from "./utils/trpc";
+
+
+export const appRouter = t.router({
+});
+
+export type AppRouter = typeof appRouter;
+
+export const apiCaller = t.createCaller(appRouter);

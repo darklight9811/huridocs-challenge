@@ -3,6 +3,18 @@
 	"module": "index.ts",
 	"type": "module",
 	"private": true,
+	"scripts": {
+		"dev": "bun --bun --cwd ./apps/web dev",
+		"build": "cd ./apps/web && bun run build",
+		"start": "cd ./apps/web && bun start",
+		"verify": "bun --bun --filter=\"*\" verify --",
+		"typecheck": "bun --bun --filter=\"@repo/locales\" run build && bun --bun --filter=\"*\" typecheck",
+		"test": "vitest --run",
+		"db": "cd packages/domains && bun --bun db",
+		"storybook": "cd packages/domains && bun storybook",
+		"storybook:build": "cd packages/domains && bun storybook:build",
+		"storybook:static": "cd packages/domains && bun storybook:static"
+	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.6",
 		"@types/bun": "latest"
@@ -23,6 +35,7 @@
 				"@trpc/server": "^11.12.0",
 				"zod": "^4.3.6",
 				"@tanstack/react-router": "^1.166.2",
+				"@tanstack/react-query": "^5.90.21",
 				"@tanstack/react-start": "^1.166.2"
 			},
 			"react": {

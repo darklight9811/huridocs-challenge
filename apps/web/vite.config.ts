@@ -6,6 +6,8 @@ import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig((config) => ({
+	publicDir: "../../public",
+	
 	resolve: {
 		tsconfigPaths: true,
 	},
