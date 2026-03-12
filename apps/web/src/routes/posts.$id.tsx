@@ -23,9 +23,11 @@ function RouteComponent() {
 
 	return (
 		<main className="mx-auto container grow mt-20">
-			<h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+			<h1 className="text-3xl font-bold">{post.title}</h1>
 
-			<UserAvatar data={user} />
+			<div className="flex my-4">
+				<UserAvatar data={user} displayName />
+			</div>
 
 			<p>{post.body}</p>
 		</main>
