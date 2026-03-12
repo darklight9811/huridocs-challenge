@@ -2,13 +2,14 @@ import { z } from "zod/v4";
 
 export const paginationSchema = z
 	.object({
-		page: z.coerce.number().default(1),
-		limit: z.coerce.number().default(25),
+		page: z.coerce.number(),
+		limit: z.coerce.number(),
 		q: z.coerce.string().optional(),
-		sort: z.enum(["asc", "desc"]).default("desc"),
+		sort: z.enum(["asc", "desc"]),
 		order: z.string().optional(),
 	})
-	.default({ limit: 25, page: 1, sort: "desc" });
+	.partial()
+	.optional();
 
 export type PaginationSchema = z.infer<typeof paginationSchema>;
 

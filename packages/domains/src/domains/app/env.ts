@@ -21,4 +21,8 @@ export const env = {
 	type: client.VITE_APP_TYPE,
 	app_url: client.VITE_APP_URL,
 	adpater: "fetch",
+
+	pagination: {
+		defaultLimit: 25,
+	},
 };
