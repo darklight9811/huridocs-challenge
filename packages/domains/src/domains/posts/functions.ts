@@ -9,5 +9,5 @@ export const postsIndex = createServerFn()
 	.handler(({ data }) => postsService.index(data));
 
 export const postsShow = createServerFn()
-	.inputValidator(z.string())
+	.inputValidator(z.number())
 	.handler(({ data }) => postsService.show(data));

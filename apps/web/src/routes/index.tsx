@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
 
 	validateSearch: paginationSchema,
 
-	loaderDeps: ({ search }) => search,
+	loaderDeps: ({ search }) => ({ ...search }),
 
 	loader({ deps }) {
 		return postsIndex({ data: deps });

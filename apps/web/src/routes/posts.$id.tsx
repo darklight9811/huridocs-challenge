@@ -1,23 +1,33 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { postsShow } from "@repo/domains/posts/functions";
+import { usersShow } from "@repo/domains/users/functions";
+import { UserAvatar } from "@repo/domains/users/ui/user-avatar";
 
 export const Route = createFileRoute("/posts/$id")({
 	component: RouteComponent,
 
-	loader({ params }) {
-		if (!params.id) throw notFound();
+	async loader({ params }) {
+		const post = await postsShow({ data: Number(params.id) });
 
-		return postsShow({ data: params.id });
+		if (!post) throw notFound();
+
+		const user = await usersShow({ data: post.userId });
+
+		return { post, user };
 	},
 });
 
 function RouteComponent() {
-	const data = Route.useLoaderData();
+	const { post, user } = Route.useLoaderData();
 
 	return (
 		<main className="mx-auto container grow mt-20">
-			<h1 className="text-3xl font-bold">{data.title}</h1>
+			<h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+
+			<UserAvatar data={user} />
+
+			<p>{post.body}</p>
 		</main>
 	);
 }

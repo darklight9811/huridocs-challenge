@@ -12,7 +12,10 @@ export const usersAdapterFetch = {
 	},
 
 	show(id: number) {
-		return fetch(`https://api.mydummyapi.com/users/${id}`)
+		// This API only has 20 users, so we use the modulo operator to loop through them
+		const parsedId = id % 20;
+
+		return fetch(`https://api.mydummyapi.com/users/${parsedId}`)
 			.then((res) => res.json())
 			.then(userSchema.parse);
 	},

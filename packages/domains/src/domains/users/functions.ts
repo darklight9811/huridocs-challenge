@@ -9,5 +9,5 @@ export const usersIndex = createServerFn()
 	.handler(({ data }) => usersService.index(data));
 
 export const usersShow = createServerFn()
-	.inputValidator(z.string())
+	.inputValidator(z.number())
 	.handler(({ data }) => usersService.show(data));
