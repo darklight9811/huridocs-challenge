@@ -17,7 +17,7 @@ function RouteComponent() {
 
 	return (
 		<main className="mx-auto container grow mt-20">
-			<pre>{JSON.stringify(data, null, 2)}</pre>
+			<h1 className="text-3xl font-bold">{data.title}</h1>
 		</main>
 	);
 }
