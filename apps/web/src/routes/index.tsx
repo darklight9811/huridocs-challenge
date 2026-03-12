@@ -33,7 +33,7 @@ function App() {
 				</div>
 			</div>
 
-			<main className="flex flex-col gap-2 container mx-auto mt-4">
+			<main className="flex flex-col gap-4 container mx-auto mt-4 grow">
 				<div>
 					<span>total: {pagination.total}</span>
 				</div>
