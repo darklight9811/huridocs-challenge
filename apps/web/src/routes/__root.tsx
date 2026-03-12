@@ -1,16 +1,17 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import { createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import type { TRPCOptionsProxy } from "@trpc/tanstack-react-query";
-import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 
 import appCss from "@repo/ds/style?url";
 
-import type { AppRouter } from "@repo/domains/server";
 import { env } from "@repo/domains/app/env";
 import { queryMiddleware } from "@repo/domains/app/middlewares";
 import { Footer } from "@repo/domains/app/ui/footer";
+import { Header } from "@repo/domains/app/ui/header";
+import type { AppRouter } from "@repo/domains/server";
 
 interface MyRouterContext {
 	queryClient: QueryClient;
@@ -22,7 +23,7 @@ const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getIte
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	server: {
-		middleware: [queryMiddleware]
+		middleware: [queryMiddleware],
 	},
 
 	head: () => ({
@@ -45,7 +46,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			},
 		],
 	}),
-	
+
 	shellComponent: RootDocument,
 });
 
@@ -57,26 +58,27 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-					
-					{children}
+				<Header />
 
-					<Footer />
-					
-					<TanStackDevtools
-						config={{
-							position: "bottom-right",
-						}}
-						plugins={[
-							{
-								name: "Tanstack Router",
-								render: <TanStackRouterDevtoolsPanel />,
-							},
-							{
-								name: "Tanstack Query",
-								render: <ReactQueryDevtoolsPanel />,
-							}
-						]}
-					/>
+				{children}
+
+				<Footer />
+
+				<TanStackDevtools
+					config={{
+						position: "bottom-right",
+					}}
+					plugins={[
+						{
+							name: "Tanstack Router",
+							render: <TanStackRouterDevtoolsPanel />,
+						},
+						{
+							name: "Tanstack Query",
+							render: <ReactQueryDevtoolsPanel />,
+						},
+					]}
+				/>
 				<Scripts />
 			</body>
 		</html>

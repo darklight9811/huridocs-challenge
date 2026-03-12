@@ -6,6 +6,7 @@ out
 dist
 *.tgz
 routeTree.gen.ts
+.tanstack
 
 # code coverage
 coverage

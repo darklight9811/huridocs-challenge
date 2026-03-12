@@ -1,3 +1,3 @@
 export function Footer() {
-	return "hi";
+	return <footer>yay</footer>;
 }
