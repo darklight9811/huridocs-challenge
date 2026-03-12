@@ -2,12 +2,14 @@ import type { PaginationSchema } from "../../app/schema";
 import { mockUser } from "../schema.mock";
 
 export const usersAdapterMock = {
-	usersIndex(pagination: PaginationSchema) {
+	usersIndex(pagination: PaginationSchema = {}) {
+		const limit = pagination.limit || 20;
+
 		return [
-			mockUser.many(pagination.limit || 20),
+			mockUser.many(limit),
 			{
 				...pagination,
-				total: pagination.limit || 20,
+				total: limit,
 			},
 		] as const;
 	},
