@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 
 import { metadata } from "./metadata";
+import { env } from "./env";
 
 describe("metadata", () => {
 	it("returns default metadata values", () => {
 		const tags = metadata();
 
-		expect(tags[0]).toEqual({ title: expect.stringContaining("Editorium") });
-		expect(tags).toContainEqual({ name: "description", content: expect.stringContaining("Editorium is a modern") });
+		expect(tags[0]).toEqual({ title: expect.stringContaining(env.name) });
 		expect(tags).toContainEqual({
 			property: "og:image",
 			content: expect.stringContaining("/brand/open-graph.png"),

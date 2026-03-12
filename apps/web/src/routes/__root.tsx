@@ -9,6 +9,7 @@ import appCss from "@repo/ds/style?url";
 
 import type { AppRouter } from "@repo/domains/server";
 import { env } from "@repo/domains/app/env";
+import { queryMiddleware } from "@repo/domains/app/middlewares";
 
 interface MyRouterContext {
 	queryClient: QueryClient;
@@ -19,6 +20,10 @@ interface MyRouterContext {
 const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');var mode=(stored==='light'||stored==='dark'||stored==='auto')?stored:'auto';var prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;var resolved=mode==='auto'?(prefersDark?'dark':'light'):mode;var root=document.documentElement;root.classList.remove('light','dark');root.classList.add(resolved);if(mode==='auto'){root.removeAttribute('data-theme')}else{root.setAttribute('data-theme',mode)}root.style.colorScheme=resolved;}catch(e){}})();`;
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
+	server: {
+		middleware: [queryMiddleware]
+	},
+
 	head: () => ({
 		meta: [
 			{
@@ -39,6 +44,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			},
 		],
 	}),
+	
 	shellComponent: RootDocument,
 });
 
