@@ -1,0 +1,23 @@
+{
+	"editor.codeActionsOnSave": {
+		"source.organizeImports.biome": "explicit"
+	},
+	"editor.defaultFormatter": "biomejs.biome",
+	"js/ts.updateImportsOnFileMove.enabled": "always",
+	"files.associations": {
+		"*.json": "jsonc",
+		".env.local": "properties",
+		".local.env": "properties"
+	},
+	"js/ts.tsdk.path": "node_modules\\typescript\\lib",
+	"tailwindCSS.classFunctions": ["cva", "cx"],
+	"files.watcherExclude": {
+		"**/routeTree.gen.ts": true
+	},
+	"search.exclude": {
+		"**/routeTree.gen.ts": true
+	},
+	"files.readonlyInclude": {
+		"**/routeTree.gen.ts": true
+	}
+}
