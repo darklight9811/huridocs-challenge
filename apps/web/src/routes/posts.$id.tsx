@@ -1,6 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
 import { useCommentsByPost } from "@repo/domains/comments/hooks";
+import { CommentRow } from "@repo/domains/comments/ui/comment-row";
 import { postsShow } from "@repo/domains/posts/functions";
 import { usePostsByUser } from "@repo/domains/posts/hooks";
 import { PostRow } from "@repo/domains/posts/ui/post-row";
@@ -55,11 +56,7 @@ function RouteComponent() {
 
 				<div className="flex flex-col gap-4">
 					{comments?.[0].map((comment) => (
-						<div key={comment.id} className="p-4 border rounded">
-							<p className="font-medium">{comment.name}</p>
-							<p className="text-sm text-muted-foreground">{comment.email}</p>
-							<p>{comment.body}</p>
-						</div>
+						<CommentRow key={comment.id} data={comment} />
 					))}
 				</div>
 			</div>
