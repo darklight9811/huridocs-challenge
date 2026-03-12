@@ -1,11 +1,11 @@
 import { env } from "../../app/env";
-import type { PaginationSchema } from "../../app/schema";
+import type { PostPaginationSchema } from "../schema";
 import { mockPost } from "../schema.mock";
 
 export const postsAdapterMock = {
-	postsIndex(pagination: PaginationSchema) {
+	postsIndex(pagination: PostPaginationSchema) {
 		return [
-			mockPost.many(pagination?.limit || env.pagination.defaultLimit),
+			mockPost.many(pagination?.limit || env.pagination.defaultLimit, { userId: pagination?.userId }),
 			{
 				...pagination,
 				page: pagination?.page || 1,

@@ -1,10 +1,11 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
-import { createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
+import { createRootRouteWithContext, HeadContent, Link, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import appCss from "@repo/ds/style?url";
+import { buttonVariants } from "@repo/ds/ui/button";
 
 import { env } from "@repo/domains/app/env";
 import { Footer } from "@repo/domains/app/ui/footer";
@@ -37,6 +38,17 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			},
 		],
 	}),
+
+	notFoundComponent: () => (
+		<div className="grow flex flex-col justify-center items-center">
+			<h1 className="font-bold text-3xl">Page Not Found</h1>
+			<h2 className="text-lg text-muted-foreground">The page you are looking for does not exist.</h2>
+
+			<Link to="/" className={buttonVariants({ className: "mt-4" })}>
+				Go back to the homepage
+			</Link>
+		</div>
+	),
 
 	shellComponent: RootDocument,
 });

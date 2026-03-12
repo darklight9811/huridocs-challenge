@@ -1,11 +1,11 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod/v4";
 
-import { paginationSchema } from "../app/schema";
+import { postPaginationSchema } from "./schema";
 import { postsService } from "./server/service";
 
 export const postsIndex = createServerFn()
-	.inputValidator(paginationSchema)
+	.inputValidator(postPaginationSchema)
 	.handler(({ data }) => postsService.index(data));
 
 export const postsShow = createServerFn()
