@@ -1,0 +1,12 @@
+{
+	"name": "scripts",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"verify": "echo 'No linting configured for scripts package'",
+		"typecheck": "tsgo --noEmit"
+	},
+	"exports": {
+		"./*": "./src/*.ts"
+	}
+}

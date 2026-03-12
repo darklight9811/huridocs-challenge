@@ -9,7 +9,7 @@
 		"start": "cd ./apps/web && bun start",
 		"verify": "bun --bun --filter=\"*\" verify --",
 		"typecheck": "bun --bun --filter=\"@repo/locales\" run build && bun --bun --filter=\"*\" typecheck",
-		"test": "vitest --run",
+		"test": "vitest",
 		"db": "cd packages/domains && bun --bun db",
 		"storybook": "cd packages/domains && bun storybook",
 		"storybook:build": "cd packages/domains && bun storybook:build",
@@ -17,11 +17,16 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.6",
+		"@testing-library/react": "^16.3.0",
+		"@typescript/native-preview": "^7.0.0-dev.20260306.1",
+		"jsdom": "^28.1.0",
+		"vitest": "^4.0.18",
 		"@types/bun": "latest"
 	},
 	"peerDependencies": {
-		"typescript": "^5"
+		"typescript": "catalog:general"
 	},
+	"packageManager": "bun@1.3.10",
 	"workspaces": {
 		"packages": [
 			"packages/*",
