@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { metadata } from "./metadata";
 import { env } from "./env";
+import { metadata } from "./metadata";
 
 describe("metadata", () => {
 	it("returns default metadata values", () => {

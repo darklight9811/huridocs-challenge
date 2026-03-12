@@ -1,6 +1,6 @@
 import { createFormHook, createFormHookContexts } from "@tanstack/react-form";
 import { LoaderIcon } from "lucide-react";
-import { type ComponentProps } from "react";
+import type { ComponentProps } from "react";
 
 import { cn } from "../lib/utils";
 import { Button } from "../ui/button";

@@ -1,3 +1,3 @@
-export function Footer () {
-	return "hi"
+export function Footer() {
+	return "hi";
 }
