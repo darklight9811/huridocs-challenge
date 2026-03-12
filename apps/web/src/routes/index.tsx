@@ -4,7 +4,6 @@ import { Input } from "@repo/ds/ui/input";
 
 import { paginationSchema } from "@repo/domains/app/schema";
 import { postsIndex } from "@repo/domains/posts/functions";
-import { usePostsTable } from "@repo/domains/posts/table";
 import { PostRow } from "@repo/domains/posts/ui/post-row";
 
 export const Route = createFileRoute("/")({
@@ -21,19 +20,26 @@ export const Route = createFileRoute("/")({
 
 function App() {
 	const [data, pagination] = Route.useLoaderData();
-	const postsTable = usePostsTable(data, pagination);
 
 	return (
 		<>
-			<div className="bg-red-500 h-[60vh] flex items-end justify-center pb-[10vh]">
-				<div className="max-w-sm w-full mx-auto">
+			<div className="bg-[url(/images/wallpapers/01.jpg)] h-[60vh] flex flex-col items-center justify-center gap-12 relative">
+				<div className="bg-linear-to-t from-black to-black/0 absolute top-0 left-0 w-full h-full" />
+
+				<h1 className="text-white text-5xl font-bold z-10">Search incredible posts here</h1>
+
+				<div className="max-w-sm w-full mx-auto z-10">
 					<Input placeholder="Search posts..." />
 				</div>
 			</div>
 
 			<main className="flex flex-col gap-2 container mx-auto mt-4">
-				{postsTable.getRowModel().rows.map((row) => (
-					<PostRow data={row.original} key={row.id} />
+				<div>
+					<span>total: {pagination.total}</span>
+				</div>
+
+				{data.map((post) => (
+					<PostRow data={post} key={post.id} />
 				))}
 			</main>
 		</>
