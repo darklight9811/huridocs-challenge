@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 
+import { paginate } from "../../../utils/paginate";
 import type { PaginationSchema } from "../../app/schema";
 import { userSchema } from "../schema";
 
@@ -7,17 +8,7 @@ export const usersService = {
 	index(pagination: PaginationSchema) {
 		return fetch("https://api.mydummyapi.com/users")
 			.then((res) => res.json())
-			.then((data) => {
-				const parsed = z.array(userSchema).parse(data);
-
-				return [
-					parsed.splice((pagination.page - 1 || 0) * (pagination.limit || 0), pagination.limit),
-					{
-						...pagination,
-						total: data.length,
-					},
-				] as const;
-			});
+			.then((data) => paginate(z.array(userSchema).parse(data), pagination, ["name", "email"]));
 	},
 
 	show(id: string) {

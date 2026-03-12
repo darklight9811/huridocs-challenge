@@ -1,3 +1,4 @@
+import { postsRouter } from "./domains/posts/server/router";
 import { usersRouter } from "./domains/users/server/router";
 import { t } from "./utils/trpc";
 
@@ -7,6 +8,7 @@ export { createTRPCContext } from "./utils/trpc";
 
 export const appRouter = t.router({
 	users: usersRouter,
+	posts: postsRouter,
 });
 
 export type AppRouter = typeof appRouter;

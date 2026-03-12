@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { paginationSchema } from "@repo/domains/app/schema";
-import { usersIndex } from "@repo/domains/users/functions";
+import { postsIndex } from "@repo/domains/posts/functions";
+import { usePostsTable } from "@repo/domains/posts/table";
 
 export const Route = createFileRoute("/")({
 	component: App,
@@ -11,16 +12,19 @@ export const Route = createFileRoute("/")({
 	loaderDeps: ({ search }) => search,
 
 	loader({ deps }) {
-		return usersIndex({ data: deps });
+		return postsIndex({ data: deps });
 	},
 });
 
 function App() {
-	const [data, metadata] = Route.useLoaderData();
+	const [data, pagination] = Route.useLoaderData();
+	const postsTable = usePostsTable(data, pagination);
 
 	return (
 		<main className="page-wrap px-4 pb-8 pt-14">
-			<pre>{JSON.stringify(data, null, 4)}</pre>
+			{postsTable.getRowModel().rows.map((row) => (
+				<div key={row.id}>{row.getValue("id")}</div>
+			))}
 		</main>
 	);
 }
