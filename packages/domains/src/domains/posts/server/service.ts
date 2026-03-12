@@ -1,19 +1,16 @@
-import { z } from "zod/v4";
-
-import { paginate } from "../../../utils/paginate";
 import type { PaginationSchema } from "../../app/schema";
-import { postSchema } from "../schema";
+import { postsAdapter } from "./adapter";
 
 export const postsService = {
-	index(pagination: PaginationSchema) {
-		return fetch("https://api.mydummyapi.com/posts")
-			.then((res) => res.json())
-			.then((data) => paginate(z.array(postSchema).parse(data), pagination, ["title", "body"]));
+	async index(pagination: PaginationSchema) {
+		const payload = await postsAdapter.postsIndex(pagination);
+
+		return payload;
 	},
 
-	show(id: string) {
-		return fetch(`https://api.mydummyapi.com/posts/${id}`)
-			.then((res) => res.json())
-			.then(postSchema.parse);
+	async show(id: number | string) {
+		const payload = await postsAdapter.show(Number(id));
+
+		return payload;
 	},
 };

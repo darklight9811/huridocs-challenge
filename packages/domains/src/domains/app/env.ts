@@ -20,4 +20,5 @@ export const env = {
 	version: client.VITE_APP_VERSION,
 	type: client.VITE_APP_TYPE,
 	app_url: client.VITE_APP_URL,
+	adpater: "fetch",
 };
