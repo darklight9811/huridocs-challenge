@@ -8,6 +8,7 @@ import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import appCss from "@repo/ds/style?url";
 
 import type { AppRouter } from "@repo/domains/server";
+import { env } from "@repo/domains/app/env";
 
 interface MyRouterContext {
 	queryClient: QueryClient;
@@ -28,7 +29,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				title: env.name,
 			},
 		],
 		links: [

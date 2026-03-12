@@ -8,7 +8,7 @@
 		"build": "cd ./apps/web && bun run build",
 		"start": "cd ./apps/web && bun start",
 		"verify": "bun --bun --filter=\"*\" verify --",
-		"typecheck": "bun --bun --filter=\"@repo/locales\" run build && bun --bun --filter=\"*\" typecheck",
+		"typecheck": "bun --bun --filter=\"*\" typecheck",
 		"test": "vitest",
 		"db": "cd packages/domains && bun --bun db",
 		"storybook": "cd packages/domains && bun storybook",
