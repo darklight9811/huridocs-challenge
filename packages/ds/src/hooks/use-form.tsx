@@ -1,10 +1,9 @@
 import { createFormHook, createFormHookContexts } from "@tanstack/react-form";
 import { LoaderIcon } from "lucide-react";
-import { type ComponentProps, useState } from "react";
+import { type ComponentProps } from "react";
 
 import { cn } from "../lib/utils";
 import { Button } from "../ui/button";
-import { Checkbox } from "../ui/checkbox";
 
 export const { fieldContext, formContext, useFormContext, useFieldContext } = createFormHookContexts();
 
@@ -101,46 +100,6 @@ export const { useAppForm } = createFormHook({
 						</label>
 					)}
 					{props.children}
-				</fieldset>
-			);
-		},
-		NullableFieldset(props: {
-			children: React.ReactNode;
-			label?: React.ReactNode;
-			toggleLabel?: React.ReactNode;
-			errorless?: boolean;
-			className?: string;
-		}) {
-			const field = useFieldContext();
-			const [isNullable, setIsNullable] = useState(field.state.value == null);
-
-			return (
-				<fieldset className={cn("flex flex-col", props.className)}>
-					{props.label && (
-						<label className="pb-2" htmlFor={field.name}>
-							{props.label}
-						</label>
-					)}
-					<div className="flex gap-2 items-center">
-						<Checkbox
-							checked={!isNullable}
-							onCheckedChange={() => {
-								setIsNullable(!isNullable);
-								if (!isNullable && field.state.value !== null) field.handleChange(null);
-							}}
-						/>
-
-						{props.toggleLabel}
-
-						<div style={{ flex: 1 }} className={isNullable ? "opacity-10 pointer-events-none" : ""}>
-							{props.children}
-						</div>
-					</div>
-					{props.errorless !== true && (
-						<p className="mt-2 text-sm font-medium text-destructive h-5" role="alert">
-							{field.state.meta.errors.map((t) => t.message).join(", ")}
-						</p>
-					)}
 				</fieldset>
 			);
 		},

@@ -10,6 +10,7 @@ import appCss from "@repo/ds/style?url";
 import type { AppRouter } from "@repo/domains/server";
 import { env } from "@repo/domains/app/env";
 import { queryMiddleware } from "@repo/domains/app/middlewares";
+import { Footer } from "@repo/domains/app/ui/footer";
 
 interface MyRouterContext {
 	queryClient: QueryClient;
@@ -58,6 +59,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
 					
 					{children}
+
+					<Footer />
 					
 					<TanStackDevtools
 						config={{

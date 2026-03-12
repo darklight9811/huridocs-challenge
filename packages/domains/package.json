@@ -8,6 +8,7 @@
 	},
 	"exports": {
 		"./*": "./src/domains/*.ts",
+		"./app/ui/*": "./src/domains/app/ui/*.tsx",
 		".": "./src/domains/index.ts",
 		"./server": "./src/server.ts",
 		"./utils/*": "./src/utils/*.ts"
