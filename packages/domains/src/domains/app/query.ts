@@ -1,6 +1,6 @@
 import { QueryClient } from "@tanstack/react-query";
 
-import { transformer } from "../../utils/trpc-utils";
+import { transformer } from "../../utils/transformer";
 
 let queryClient: QueryClient;
 

@@ -24,7 +24,6 @@
 		"@tanstack/react-start": "latest",
 		"@tanstack/react-table": "^8.21.3",
 		"@tanstack/router-plugin": "^1.132.0",
-		"@trpc/server": "catalog:general",
 		"lucide-react": "catalog:react",
 		"react": "catalog:react",
 		"react-dom": "catalog:react",
