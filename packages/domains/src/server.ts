@@ -4,9 +4,7 @@ export { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
 export { createTRPCContext } from "./utils/trpc";
 
-
-export const appRouter = t.router({
-});
+export const appRouter = t.router({});
 
 export type AppRouter = typeof appRouter;
 
