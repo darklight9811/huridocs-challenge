@@ -8,7 +8,14 @@ export const postsAdapterFetch = {
 	async postsIndex(pagination: PaginationSchema) {
 		const posts = await fetch("https://api.mydummyapi.com/posts").then((res) => res.json());
 
-		return paginate(z.array(postSchema).parse(posts), { ...pagination, pages: 2 }, ["title", "body"]);
+		return paginate(
+			z.array(postSchema).parse(
+				// since api doesnt support pagination and sorting, we do it here in memory, but ideally this should be done in the api
+				pagination?.sort === "desc" ? posts.reverse() : posts,
+			),
+			{ ...pagination, pages: 2 },
+			["title", "body"],
+		);
 	},
 
 	async show(id: number) {

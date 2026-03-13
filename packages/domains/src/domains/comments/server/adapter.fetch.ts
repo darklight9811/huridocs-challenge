@@ -8,7 +8,9 @@ export const commentsAdapterFetch = {
 	commentsIndex(pagination: PaginationSchema) {
 		return fetch("https://api.mydummyapi.com/comments")
 			.then((res) => res.json())
-			.then((data) => paginate(z.array(commentSchema).parse(data), pagination, ["name", "email", "body"]));
+			.then((data) =>
+				paginate(z.array(commentSchema).parse(data), { ...pagination, pages: 2 }, ["name", "email", "body"]),
+			);
 	},
 
 	show(id: number) {

@@ -8,7 +8,7 @@ export const usersAdapterFetch = {
 	usersIndex(pagination: PaginationSchema) {
 		return fetch("https://api.mydummyapi.com/users")
 			.then((res) => res.json())
-			.then((data) => paginate(z.array(userSchema).parse(data), pagination, ["name", "email"]));
+			.then((data) => paginate(z.array(userSchema).parse(data), { ...pagination, pages: 2 }, ["name", "email"]));
 	},
 
 	show(id: number) {
