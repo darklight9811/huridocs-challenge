@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { Input } from "@repo/ds/ui/input";
+import { InputSearch } from "@repo/ds/ui/input-search";
 import { Pagination } from "@repo/ds/ui/pagination";
 
 import { env } from "@repo/domains/app/env";
@@ -35,7 +35,7 @@ function App() {
 				<h1 className="text-white text-5xl font-bold z-10">Search incredible posts here</h1>
 
 				<div className="max-w-sm w-full mx-auto z-10">
-					<Input
+					<InputSearch
 						placeholder="Search posts..."
 						value={pagination.q}
 						onChange={(value) => setPaginationDebounced({ q: value })}
