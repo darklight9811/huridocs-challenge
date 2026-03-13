@@ -4,7 +4,8 @@ import { useState } from "react";
 
 import { Input } from "@repo/ds/ui/input";
 
-import { paginationSchema } from "@repo/domains/app/schema";
+import { type PaginationSchema, paginationSchema } from "@repo/domains/app/schema";
+import { PaginationSelect } from "@repo/domains/app/ui/pagination-select";
 import { postsIndex } from "@repo/domains/posts/functions";
 import { PostRow } from "@repo/domains/posts/ui/post-row";
 
@@ -27,9 +28,12 @@ function App() {
 
 	const [value, setValue] = useState(search?.q || "");
 
-	const onSearch = useDebouncedCallback((value: string) => navigate({ search: { ...search, q: value } }), {
-		wait: 500,
-	});
+	const onSearch = useDebouncedCallback(
+		(value: Partial<PaginationSchema>) => navigate({ search: { ...search, ...value } }),
+		{
+			wait: 500,
+		},
+	);
 
 	return (
 		<>
@@ -44,15 +48,17 @@ function App() {
 						value={value}
 						onChange={(value) => {
 							setValue(value);
-							onSearch(value);
+							onSearch({ q: value });
 						}}
 					/>
 				</div>
 			</div>
 
 			<main className="flex flex-col gap-4 container mx-auto mt-4 grow">
-				<div>
+				<div className="flex justify-between items-center">
 					<span>total: {data.length}</span>
+
+					<PaginationSelect value={search?.page || 1} onChange={(value) => onSearch({ limit: value })} />
 				</div>
 
 				{data.map((post) => (
