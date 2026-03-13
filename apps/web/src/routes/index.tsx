@@ -7,6 +7,7 @@ import { env } from "@repo/domains/app/env";
 import { usePagination } from "@repo/domains/app/hooks";
 import { paginationSchema } from "@repo/domains/app/schema";
 import { PaginationLimitSelect } from "@repo/domains/app/ui/pagination-limit-select";
+import { PaginationSort } from "@repo/domains/app/ui/pagination-sort";
 import { postsIndex } from "@repo/domains/posts/functions";
 import { PostRow } from "@repo/domains/posts/ui/post-row";
 
@@ -46,7 +47,9 @@ function App() {
 				<div className="flex justify-between items-center">
 					<span>total: {data.length}</span>
 
-					<div>
+					<div className="flex gap-2">
+						<PaginationSort value={pagination.sort} onChange={(value) => setPagination({ sort: value })} />
+
 						<PaginationLimitSelect
 							value={pagination.limit || env.pagination.defaultLimit}
 							onChange={(value) => setPagination({ limit: value })}
