@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { Input } from "@repo/ds/ui/input";
 
+import { env } from "@repo/domains/app/env";
 import { type PaginationSchema, paginationSchema } from "@repo/domains/app/schema";
 import { PaginationSelect } from "@repo/domains/app/ui/pagination-select";
 import { postsIndex } from "@repo/domains/posts/functions";
@@ -28,12 +29,11 @@ function App() {
 
 	const [value, setValue] = useState(search?.q || "");
 
-	const onSearch = useDebouncedCallback(
-		(value: Partial<PaginationSchema>) => navigate({ search: { ...search, ...value } }),
-		{
-			wait: 500,
-		},
-	);
+	const onSearch = (value: Partial<PaginationSchema>) => navigate({ search: { ...search, ...value } });
+
+	const onSearchDebounce = useDebouncedCallback(onSearch, {
+		wait: 500,
+	});
 
 	return (
 		<>
@@ -48,7 +48,7 @@ function App() {
 						value={value}
 						onChange={(value) => {
 							setValue(value);
-							onSearch({ q: value });
+							onSearchDebounce({ q: value });
 						}}
 					/>
 				</div>
@@ -58,7 +58,10 @@ function App() {
 				<div className="flex justify-between items-center">
 					<span>total: {data.length}</span>
 
-					<PaginationSelect value={search?.page || 1} onChange={(value) => onSearch({ limit: value })} />
+					<PaginationSelect
+						value={search?.limit || env.pagination.defaultLimit}
+						onChange={(value) => onSearch({ limit: value })}
+					/>
 				</div>
 
 				{data.map((post) => (
