@@ -8,6 +8,7 @@ export const postsAdapterMock = {
 			mockPost.many(pagination?.limit || env.pagination.defaultLimit, { userId: pagination?.userId }),
 			{
 				...pagination,
+				pages: Math.random() > 0.5 ? 5 : 10,
 				page: pagination?.page || 1,
 				sort: "desc",
 				limit: pagination?.limit || env.pagination.defaultLimit,

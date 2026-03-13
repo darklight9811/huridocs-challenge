@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 import { Input } from "@repo/ds/ui/input";
+import { Pagination } from "@repo/ds/ui/pagination";
 
 import { env } from "@repo/domains/app/env";
 import { type PaginationSchema, paginationSchema } from "@repo/domains/app/schema";
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/")({
 function App() {
 	const search = Route.useSearch();
 	const navigate = Route.useNavigate();
-	const [data] = Route.useLoaderData();
+	const [data, metadata] = Route.useLoaderData();
 
 	const [value, setValue] = useState(search?.q || "");
 
@@ -67,6 +68,10 @@ function App() {
 				{data.map((post) => (
 					<PostRow data={post} key={post.id} />
 				))}
+
+				<div>
+					<Pagination {...metadata} />
+				</div>
 			</main>
 		</>
 	);

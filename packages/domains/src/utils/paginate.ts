@@ -1,6 +1,10 @@
 import type { PaginationSchema } from "../domains/app/schema";
 
-export function paginate<T extends Record<string, unknown>>(data: T[], pagination: PaginationSchema, q?: (keyof T)[]) {
+export function paginate<T extends Record<string, unknown>>(
+	data: T[],
+	pagination: PaginationSchema & { pages: number },
+	q?: (keyof T)[],
+) {
 	const page = pagination?.page ?? 1;
 	const limit = pagination?.limit ?? 25;
 	const sort = pagination?.sort ?? "asc";
