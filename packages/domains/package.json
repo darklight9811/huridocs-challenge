@@ -45,6 +45,7 @@
 		"@tanstack/react-query": "catalog:general",
 		"@tanstack/react-router": "catalog:general",
 		"@tanstack/react-start": "catalog:general",
+		"@tanstack/react-pacer": "^0.20.0",
 		"devalue": "^5.6.3",
 		"lucide-react": "catalog:react",
 		"motion": "catalog:react",

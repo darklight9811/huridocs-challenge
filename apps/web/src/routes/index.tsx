@@ -1,13 +1,12 @@
-import { useDebouncedCallback } from "@tanstack/react-pacer/debouncer";
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 
 import { Input } from "@repo/ds/ui/input";
 import { Pagination } from "@repo/ds/ui/pagination";
 
 import { env } from "@repo/domains/app/env";
-import { type PaginationSchema, paginationSchema } from "@repo/domains/app/schema";
-import { PaginationSelect } from "@repo/domains/app/ui/pagination-select";
+import { usePagination } from "@repo/domains/app/hooks";
+import { paginationSchema } from "@repo/domains/app/schema";
+import { PaginationLimitSelect } from "@repo/domains/app/ui/pagination-limit-select";
 import { postsIndex } from "@repo/domains/posts/functions";
 import { PostRow } from "@repo/domains/posts/ui/post-row";
 
@@ -24,17 +23,8 @@ export const Route = createFileRoute("/")({
 });
 
 function App() {
-	const search = Route.useSearch();
-	const navigate = Route.useNavigate();
 	const [data, metadata] = Route.useLoaderData();
-
-	const [value, setValue] = useState(search?.q || "");
-
-	const onSearch = (value: Partial<PaginationSchema>) => navigate({ search: { ...search, ...value } });
-
-	const onSearchDebounce = useDebouncedCallback(onSearch, {
-		wait: 500,
-	});
+	const [pagination, setPagination, setPaginationDebounced] = usePagination();
 
 	return (
 		<>
@@ -46,11 +36,8 @@ function App() {
 				<div className="max-w-sm w-full mx-auto z-10">
 					<Input
 						placeholder="Search posts..."
-						value={value}
-						onChange={(value) => {
-							setValue(value);
-							onSearchDebounce({ q: value });
-						}}
+						value={pagination.q}
+						onChange={(value) => setPaginationDebounced({ q: value })}
 					/>
 				</div>
 			</div>
@@ -59,10 +46,12 @@ function App() {
 				<div className="flex justify-between items-center">
 					<span>total: {data.length}</span>
 
-					<PaginationSelect
-						value={search?.limit || env.pagination.defaultLimit}
-						onChange={(value) => onSearch({ limit: value })}
-					/>
+					<div>
+						<PaginationLimitSelect
+							value={pagination.limit || env.pagination.defaultLimit}
+							onChange={(value) => setPagination({ limit: value })}
+						/>
+					</div>
 				</div>
 
 				{data.map((post) => (

@@ -1,6 +1,12 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@repo/ds/ui/select";
 
-export function PaginationSelect({ value, onChange }: { value: string | number; onChange: (value: number) => void }) {
+export function PaginationLimitSelect({
+	value,
+	onChange,
+}: {
+	value: string | number;
+	onChange: (value: number) => void;
+}) {
 	return (
 		<Select value={String(value)} onValueChange={(e) => onChange(Number(e))}>
 			<SelectTrigger>

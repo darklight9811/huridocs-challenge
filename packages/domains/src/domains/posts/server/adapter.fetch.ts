@@ -8,10 +8,7 @@ export const postsAdapterFetch = {
 	async postsIndex(pagination: PaginationSchema) {
 		const posts = await fetch("https://api.mydummyapi.com/posts").then((res) => res.json());
 
-		return paginate(z.array(postSchema).parse(posts), { ...pagination, pages: Math.random() > 0.5 ? 5 : 10 }, [
-			"title",
-			"body",
-		]);
+		return paginate(z.array(postSchema).parse(posts), { ...pagination, pages: 2 }, ["title", "body"]);
 	},
 
 	async show(id: number) {
