@@ -2,7 +2,7 @@ import type { PaginationSchema } from "../domains/app/schema";
 
 export function paginate<T extends Record<string, unknown>>(
 	data: T[],
-	pagination: PaginationSchema & { pages: number },
+	pagination: PaginationSchema & { pages?: number },
 	q?: (keyof T)[],
 ) {
 	const page = pagination?.page ?? 1;
