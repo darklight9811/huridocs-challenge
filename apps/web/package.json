@@ -16,6 +16,7 @@
 		"@repo/ds": "workspace:*",
 		"@tailwindcss/vite": "^4.1.18",
 		"@tanstack/react-devtools": "latest",
+		"@tanstack/react-pacer": "^0.20.0",
 		"@tanstack/react-query": "catalog:general",
 		"@tanstack/react-query-devtools": "latest",
 		"@tanstack/react-router": "catalog:general",
